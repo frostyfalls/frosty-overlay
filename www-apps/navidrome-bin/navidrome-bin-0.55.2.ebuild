@@ -36,17 +36,22 @@ S="${WORKDIR}"
 QA_PREBUILT="/opt/navidrome/navidrome"
 
 src_install() {
-	keepdir /etc/navidrome
-	fowners navidrome:navidrome /etc/navidrome
-	insinto /etc/navidrome
+	local confdir datadir instdir
+
+	confdir="/etc/navidrome"
+	keepdir "${confdir}"
+	fowners navidrome:navidrome "${confdir}"
+	insinto "${confdir}"
 	doins "${FILESDIR}"/navidrome.toml
 
-	keepdir /var/lib/navidrome
-	fowners navidrome:navidrome /var/lib/navidrome
+	datadir="/var/lib/navidrome"
+	keepdir "${datadir}"
+	fowners navidrome:navidrome "${datadir}"
 
-	dodir /opt/navidrome
-	fowners navidrome:navidrome /opt/navidrome
-	exeinto /opt/navidrome
+	instdir="/opt/navidrome"
+	dodir "${instdir}"
+	fowners navidrome:navidrome "${instdir}"
+	exeinto "${instdir}"
 	doexe navidrome
 
 	systemd_dounit "${FILESDIR}"/navidrome.service
