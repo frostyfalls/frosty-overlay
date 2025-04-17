@@ -1,0 +1,4 @@
+# MusicFolder = "/mnt/music"
+DataFolder = "/var/lib/navidrome"
+# Disable anonymous data collection (https://www.navidrome.org/docs/getting-started/insights/)
+EnableInsightsCollector = false
