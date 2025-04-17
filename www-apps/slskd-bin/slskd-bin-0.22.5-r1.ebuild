@@ -34,21 +34,27 @@ S="${WORKDIR}"
 QA_PREBUILT="/opt/slskd/slskd"
 
 src_install() {
-	keepdir /etc/slskd
-	fowners slskd:slskd /etc/slskd
-	insinto /etc/slskd
+	local confdir datadir instdir
+
+	confdir="/etc/slskd"
+	keepdir "${confdir}"
+	fowners slskd:slskd "${confdir}"
+	insinto "${confdir}"
 	doins "${FILESDIR}"/slskd.yml
 
-	keepdir /var/lib/slskd
-	fowners slskd:slskd /var/lib/slskd
-	keepdir /var/lib/slskd/app
-	fowners slskd:slskd /var/lib/slskd/app
+	datadir="/var/lib/slskd"
+	keepdir "${datadir}"
+	fowners slskd:slskd "${datadir}"
+	# Crashes if it doesn't exist before running
+	keepdir "${datadir}"/app
+	fowners slskd:slskd "${datadir}"/app
 
-	dodir /opt/slskd
-	fowners slskd:slskd /opt/slskd
-	exeinto /opt/slskd
+	instdir="/opt/slskd"
+	dodir "${instdir}"
+	fowners slskd:slskd "${instdir}"
+	exeinto "${instdir}"
 	doexe slskd
-	insinto /opt/slskd
+	insinto "${instdir}"
 	doins -r wwwroot
 
 	systemd_dounit "${FILESDIR}"/slskd.service
