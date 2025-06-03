@@ -1,0 +1,11 @@
+diff '--color=auto' -ur a/gruber-darker-theme.el b/gruber-darker-theme.el
+--- a/gruber-darker-theme.el	2025-06-03 14:11:11.224954537 -0400
++++ b/gruber-darker-theme.el	2025-06-03 14:11:20.638352185 -0400
+@@ -417,7 +417,6 @@
+ (provide-theme 'gruber-darker)
+ 
+ ;; Local Variables:
+-;; no-byte-compile: t
+ ;; indent-tabs-mode: nil
+ ;; eval: (when (fboundp 'rainbow-mode) (rainbow-mode +1))
+ ;; End:
